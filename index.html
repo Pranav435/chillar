@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chillar: the stingy friend in your browser</title>
+<meta name="description" content="A tiny Chrome extension that quietly unticks add-ons you didn't ask for, points out hidden fees, and reminds you before free trials charge you.">
+<meta property="og:title" content="Chillar: the stingy friend in your browser">
+<meta property="og:description" content="Install once. It quietly unticks add-ons, flags hidden fees and stops forgotten free trials from charging you.">
+<link rel="icon" href="icon128.png">
+<style>
+  :root { --bg:#fffaf0; --fg:#1f1a12; --muted:#5d5340; --gold:#eaaa28; --gold-ink:#1f1a12; --card:#fff3d6; --line:#e6dcc6; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#16120c; --fg:#fff8e7; --muted:#cbbf9f; --card:#241d12; --line:#3d3424; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:32px 16px 64px; }
+  header { display:flex; align-items:center; gap:14px; }
+  header img { width:56px; height:56px; }
+  h1 { font-size:clamp(28px,6vw,40px); line-height:1.15; margin:0; }
+  .lede { font-size:clamp(18px,3.5vw,22px); margin:18px 0 22px; }
+  .buy { display:inline-block; background:var(--gold); color:var(--gold-ink); font-weight:700; text-decoration:none; padding:14px 22px; border-radius:10px; font-size:18px; }
+  .buy:focus-visible, a:focus-visible { outline:3px solid var(--fg); outline-offset:3px; }
+  .small { color:var(--muted); font-size:15px; }
+  h2 { font-size:24px; margin:40px 0 12px; }
+  ol.jobs { padding:0; list-style:none; counter-reset:j; }
+  ol.jobs li { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:0 0 12px; counter-increment:j; }
+  ol.jobs h3 { margin:0 0 6px; font-size:19px; }
+  ol.jobs h3::before { content:counter(j) ". "; color:var(--gold); }
+  .say { font-style:italic; color:var(--muted); margin:8px 0 0; }
+  ol.steps li { margin:0 0 6px; }
+  code { background:var(--card); border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size:15px; }
+  dl dt { font-weight:700; margin-top:14px; }
+  dl dd { margin:4px 0 0; }
+  footer { margin-top:48px; border-top:1px solid var(--line); padding-top:16px; color:var(--muted); font-size:15px; }
+  a { color:inherit; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon128.png" alt="">
+    <h1>Chillar: the stingy friend in your browser</h1>
+  </header>
+
+  <p class="lede">Install it once and forget it. Chillar quietly saves you money on every website, and only speaks up when it finds something.</p>
+  <p><a class="buy" href="https://blindiephoenix.gumroad.com/l/chillar">Get Chillar: pay what you want, from INR 99</a></p>
+  <p class="small">Instant download. Works in Chrome, Edge, Brave and Arc on Mac, Windows and Linux. Pay by UPI or card.</p>
+
+  <h2>What it does, by itself</h2>
+  <ol class="jobs">
+    <li>
+      <h3>Unticks add-ons you didn't ask for</h3>
+      <p>Pre-ticked travel insurance, donations, tips, protection plans, zero-cancellation add-ons and "send me offers" boxes get unticked as the page loads. Discounts, coupons and the terms box are left alone, and anything you tick yourself stays ticked.</p>
+      <p class="say">"Chillar unticked 2 add-ons: travel insurance for INR 249, donate INR 5. That keeps INR 254 in your pocket. Undo?"</p>
+    </li>
+    <li>
+      <h3>Points out the fees hiding in your total</h3>
+      <p>Platform fee, convenience fee, packaging, handling: Chillar adds them up on checkout pages and tells you what share of your bill they are.</p>
+      <p class="say">"Fees on this page: Platform fee INR 10, Packaging INR 25. That's INR 35 out of your INR 385 total (9 percent)."</p>
+    </li>
+    <li>
+      <h3>Reminds you before free trials charge you</h3>
+      <p>When you start a free trial, Chillar notes when it ends and reminds you 2 days before, with a one-click Google Calendar reminder.</p>
+      <p class="say">"Looks like you're starting a free trial. It ends around 10 Nov, then INR 649 a month. I'll remind you on 8 Nov."</p>
+    </li>
+  </ol>
+  <p>A small counter keeps track of how much it has saved you.</p>
+
+  <h2>Private by design</h2>
+  <p>Everything runs on your laptop. Chillar has no server and no account, and nothing you browse is sent anywhere.</p>
+
+  <h2>Install in a minute</h2>
+  <ol class="steps">
+    <li>Buy Chillar and download the zip, then unzip it. Keep the Chillar folder somewhere safe, like Documents.</li>
+    <li>In Chrome, open <code>chrome://extensions</code></li>
+    <li>Turn on Developer mode (top right).</li>
+    <li>Press Load unpacked and choose the Chillar folder. Done.</li>
+  </ol>
+
+  <h2>Questions</h2>
+  <dl>
+    <dt>Why isn't it on the Chrome Web Store?</dt>
+    <dd>I'm a student and launched it today. The Web Store comes next; until then, Load unpacked works the same.</dd>
+    <dt>Does it work with screen readers?</dt>
+    <dd>Yes. I'm blind and use a screen reader every day, so every message Chillar shows is also read out, and every button works from the keyboard.</dd>
+    <dt>Can I turn parts of it off?</dt>
+    <dd>Yes. Each of the three jobs has its own switch, and you can pause Chillar on any site.</dd>
+    <dt>Why pay what you want?</dt>
+    <dd>Because one unticked insurance box pays for it. Pay INR 99, or more if it saves you more.</dd>
+  </dl>
+
+  <p><a class="buy" href="https://blindiephoenix.gumroad.com/l/chillar">Get Chillar</a></p>
+
+  <footer>
+    <p>Made by Pranav Savla, a blind developer and creator (<a href="https://instagram.com/blindiephoenix">@blindiephoenix</a>). I built Chillar because pre-ticked boxes are easy to miss, whether you use a screen reader or are just in a hurry. Questions: <a href="mailto:pranavsavla2003@gmail.com">pranavsavla2003@gmail.com</a></p>
+  </footer>
+</main>
+</body>
+</html>
