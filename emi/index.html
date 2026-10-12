@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>No-cost EMI calculator: what it really costs | Chillar</title>
+<meta name="description" content="No-cost EMI still costs you 18% GST on the bank's interest, plus a processing fee. Type the price, tenure and rate to see the real cost in rupees.">
+<link rel="canonical" href="https://pranav435.github.io/chillar/emi/">
+<meta property="og:title" content="Is your no-cost EMI really free?">
+<meta property="og:description" content="No-cost EMI still costs 18% GST on the interest, plus a processing fee. See what yours really costs, in rupees.">
+<meta property="og:image" content="https://pranav435.github.io/chillar/emi/og.png">
+<meta property="og:image:alt" content="Is your no-cost EMI really free? A INR 32,000 phone over 6 months at a 15% bank rate still costs about INR 479 extra. Work out yours at pranav435.github.io/chillar/emi.">
+<meta property="og:url" content="https://pranav435.github.io/chillar/emi/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../icon128.png">
+<style>
+  :root { --bg:#fffaf0; --fg:#1f1a12; --muted:#5d5340; --gold:#eaaa28; --gold-ink:#1f1a12; --card:#fff3d6; --line:#e6dcc6; color-scheme:light dark; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#16120c; --fg:#fff8e7; --muted:#cbbf9f; --card:#241d12; --line:#3d3424; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:32px 16px 64px; }
+  header { display:flex; align-items:center; gap:14px; }
+  header img { width:56px; height:56px; flex:none; }
+  h1 { font-size:clamp(28px,6vw,40px); line-height:1.15; margin:0; }
+  .lede { font-size:clamp(18px,3.5vw,22px); margin:18px 0 22px; }
+  .buy { display:inline-block; background:var(--gold); color:var(--gold-ink); font-weight:700; text-decoration:none; padding:14px 22px; border-radius:10px; font-size:18px; }
+  .buy:focus-visible, a:focus-visible { outline:3px solid var(--fg); outline-offset:3px; }
+  .small { color:var(--muted); font-size:15px; }
+  h2 { font-size:24px; margin:40px 0 12px; }
+  h3 { font-size:19px; margin:0 0 8px; }
+  .say { font-style:italic; color:var(--muted); margin:8px 0 0; }
+  footer { margin-top:48px; border-top:1px solid var(--line); padding-top:16px; color:var(--muted); font-size:15px; }
+  a { color:inherit; }
+
+  /* Calculator */
+  .calc { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; margin:0 0 16px; }
+  .fields { display:grid; grid-template-columns:1fr; gap:18px; }
+  @media (min-width:600px) { .fields { grid-template-columns:1fr 1fr; column-gap:20px; } }
+  .field label { display:block; font-weight:700; margin:0 0 6px; }
+  .field input, .field select { display:block; width:100%; min-height:48px; padding:10px 12px; font:inherit; font-size:18px; color:var(--fg); background:var(--bg); border:2px solid var(--muted); border-radius:10px; }
+  .field input:focus-visible, .field select:focus-visible { outline:3px solid var(--fg); outline-offset:2px; border-color:var(--fg); }
+  .hint { color:var(--muted); font-size:15px; margin:6px 0 0; }
+  .gst { margin:18px 0 0; }
+  .result { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px; padding:16px 18px; }
+  .summary { font-size:20px; font-weight:700; line-height:1.4; margin:0 0 12px; overflow-wrap:anywhere; }
+  .rows { list-style:none; margin:0; padding:0; }
+  .rows li { display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:12px; padding:10px 0; border-top:1px solid var(--line); }
+  .rows .v { font-weight:700; text-align:right; overflow-wrap:anywhere; }
+  .rows .note { grid-column:1 / -1; color:var(--muted); font-size:15px; font-weight:400; }
+  .nw { white-space:nowrap; }
+  .rows li.total { border-top:2px solid var(--fg); font-weight:700; }
+  .note-line { margin:12px 0 0; }
+  .more { display:inline-block; padding:10px 0; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="../icon128.png" alt="">
+    <h1>Is your no-cost EMI really free?</h1>
+  </header>
+
+  <p class="lede">Almost. A phone costing INR 32,000 on a <span class="nw">6-month</span> no-cost EMI ends up about INR 479 dearer than paying in full, at a typical 15% rate and INR 199 fee. Put in your own numbers below.</p>
+
+  <h2 id="calc-h">Work out yours</h2>
+  <form class="calc" id="calc" aria-labelledby="calc-h" novalidate>
+    <div class="fields">
+      <div class="field">
+        <label for="price">Price in INR</label>
+        <input id="price" name="price" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" maxlength="16" value="32000" aria-describedby="price-hint">
+        <p class="hint" id="price-hint">What you'd pay if you paid in full.</p>
+      </div>
+      <div class="field">
+        <label for="months">EMI tenure</label>
+        <select id="months" name="months" autocomplete="off">
+          <option value="3">3 months</option>
+          <option value="6" selected>6 months</option>
+          <option value="9">9 months</option>
+          <option value="12">12 months</option>
+          <option value="18">18 months</option>
+          <option value="24">24 months</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rate">Bank's interest rate, % a year</label>
+        <input id="rate" name="rate" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="6" value="15" aria-describedby="rate-hint">
+        <p class="hint" id="rate-hint">Most cards charge about 13 to 16%. The EMI plan details at checkout show your bank's real rate.</p>
+      </div>
+      <div class="field">
+        <label for="fee">Processing fee in INR</label>
+        <input id="fee" name="fee" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" maxlength="8" value="199" aria-describedby="fee-hint">
+        <p class="hint" id="fee-hint">Often INR 99 to 299. Type 0 if your bank doesn't charge one.</p>
+      </div>
+    </div>
+    <p class="hint gst">GST is 18%, on both the interest and the fee. There's no box for it because it doesn't change, however nicely you ask.</p>
+  </form>
+
+  <section class="result" aria-labelledby="result-h">
+    <h3 id="result-h">What it really costs</h3>
+    <p class="summary" id="summary" aria-live="polite" aria-atomic="true">No-cost EMI on INR 32,000 over 6 months costs about INR 479 more than paying in full.</p>
+    <ul class="rows" id="rows">
+      <li><span>Interest the bank charges</span><span class="v" id="r-interest">INR 1,355</span><span class="note">The shop takes this off the price, so it cancels out.</span></li>
+      <li><span>18% GST on that interest</span><span class="v" id="r-gst">INR 244</span></li>
+      <li><span>Processing fee with 18% GST</span><span class="v" id="r-fee">INR 235</span></li>
+      <li class="total"><span>Extra you pay</span><span class="v" id="r-extra">INR 479</span><span class="note" id="r-pct">That's 1.5% of the price.</span></li>
+      <li><span>Monthly instalment on your card</span><span class="v" id="r-monthly">INR 5,333</span><span class="note" id="r-monthly-note">6 payments that add up to the price. That part really is no-cost.</span></li>
+    </ul>
+    <noscript><p class="small note-line">The calculator needs JavaScript. These numbers are for the example above.</p></noscript>
+  </section>
+  <p class="small note-line">This is an estimate, rounded to the rupee. Your bank's EMI plan details are the final word.</p>
+
+  <h2>How no-cost EMI works</h2>
+  <p>Your bank charges interest on the EMI, same as any loan. To make it "no cost", the shop takes that interest off the price upfront, so your instalments add up to the sticker price. But you still pay 18% GST on the interest the bank charged, and most banks add a processing fee, with GST on that too. Nobody discounts the GST.</p>
+  <p>Also check whether the sale's instant bank discount still applies when you pay by EMI. If it doesn't, losing it can cost more than the GST and the fee put together.</p>
+
+  <h2>Or let Chillar do the sum</h2>
+  <p>Chillar is a browser extension that does this sum for you. When you pick a no-cost EMI at checkout, it works out what the plan really costs and tells you before you pay. It also unticks add-ons you didn't ask for, adds up the fees and cancels free trials for you.</p>
+  <p class="say">"Over 6 months on INR 32,000, you pay about INR 244 in GST on the interest. With the INR 199 processing fee plus GST, it costs about INR 479 more than paying in full."</p>
+  <p><a class="more" href="../">See everything Chillar does</a></p>
+  <p><a class="buy" href="https://blindiephoenix.gumroad.com/l/chillar">Get Chillar: pay what you want, from INR 99</a></p>
+  <p class="small">Plus GST. You saw that coming. Works in Chrome, Edge, Brave and Arc on Mac, Windows and Linux.</p>
+
+  <footer>
+    <p>Made by Pranav Savla, a blind developer and creator (<a href="https://instagram.com/blindiephoenix">@blindiephoenix</a>). Questions, or the worst "no-cost" offer you've seen: <a href="mailto:pranavsavla2003@gmail.com">pranavsavla2003@gmail.com</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const GST = 0.18;
+  const $ = (id) => document.getElementById(id);
+  const price = $('price'), months = $('months'), rate = $('rate'), fee = $('fee');
+  const summary = $('summary'), rows = $('rows');
+  const NBSP = ' ';
+  const rupees = (v) => 'INR' + NBSP + Math.round(v).toLocaleString('en-IN');
+
+  // Same maths as Chillar's extension (money.js, interestFor): the interest the bank earns on a
+  // no-cost EMI. The shop discounts it upfront, so the instalments add up to the price.
+  // k is the usual EMI repayment factor: total repaid / amount borrowed. At 0% it's 1.
+  function factor(n, ratePa) {
+    const r = ratePa / 1200;
+    if (r <= 0) return 1;
+    return n * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+  }
+  function interestFor(P, n, ratePa) { return P * (1 - 1 / factor(n, ratePa)); }
+
+  // Accepts "32000", "32,000", "INR 32,000", "Rs 32000", "15%". Returns null if empty, NaN if not a number.
+  function num(el) {
+    const s = el.value.replace(/^\s*(inr|rs\.?|₹)\s*/i, '').replace(/[,\s%]/g, '');
+    if (s === '') return null;
+    return /^\d+(\.\d+)?$/.test(s) || /^\.\d+$/.test(s) ? parseFloat(s) : NaN;
+  }
+
+  function work() {
+    const P = num(price), rt = num(rate), f = num(fee), n = +months.value;
+    price.setAttribute('aria-invalid', String(P !== null && !(P > 0)));
+    rate.setAttribute('aria-invalid', String(rt !== null && !(rt >= 0 && rt <= 100)));
+    fee.setAttribute('aria-invalid', String(f !== null && !(f >= 0)));
+    if (P === null) return { msg: 'Type the price in rupees to see what the EMI really costs.' };
+    if (!(P > 0)) return { msg: 'The price should be a number in rupees, like 32000.' };
+    if (rt === null || Number.isNaN(rt)) return { msg: "Type your bank's interest rate as a number, like 15." };
+    if (rt > 100) return { msg: 'That rate looks too high. Type the yearly rate, like 15.' };
+    if (Number.isNaN(f)) return { msg: "The processing fee should be a number in rupees, or 0 if there isn't one." };
+    const D = interestFor(P, n, rt);
+    const gst = D * GST;
+    const feeG = (f || 0) * (1 + GST);
+    const extra = gst + feeG;
+    const monthly = (P - D) * factor(n, rt) / n; // what the card charges each month
+    const pct = (extra / P * 100).toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const msg = Math.round(extra) === 0
+      ? `No-cost EMI on ${rupees(P)} over ${n} months really is free at these numbers. Check the plan details anyway.`
+      : `No-cost EMI on ${rupees(P)} over ${n} months costs about ${rupees(extra)} more than paying in full.`;
+    return { msg, D, gst, feeG, extra, pct, monthly, n };
+  }
+
+  function showRows(res) {
+    if (!('extra' in res)) { rows.hidden = true; return; }
+    rows.hidden = false;
+    $('r-interest').textContent = rupees(res.D);
+    $('r-gst').textContent = rupees(res.gst);
+    $('r-fee').textContent = rupees(res.feeG);
+    $('r-extra').textContent = rupees(res.extra);
+    $('r-pct').textContent = `That's ${res.pct}% of the price.`;
+    $('r-monthly').textContent = rupees(res.monthly);
+    $('r-monthly-note').textContent = `${res.n} payments that add up to the price. That part really is no-cost.`;
+  }
+
+  function say(text) { if (summary.textContent !== text) summary.textContent = text; }
+
+  let timer;
+  function update() {
+    const res = work();
+    showRows(res);
+    clearTimeout(timer);
+    // The summary is the live region: wait for a pause in typing so screen readers hear one sentence.
+    timer = setTimeout(() => say(res.msg), 400);
+  }
+
+  $('calc').addEventListener('submit', (e) => { e.preventDefault(); const res = work(); showRows(res); clearTimeout(timer); say(res.msg); });
+  for (const el of [price, rate, fee]) el.addEventListener('input', update);
+  months.addEventListener('change', update);
+  // In case the browser restored different values on back/forward.
+  const first = work(); showRows(first); say(first.msg);
+})();
+</script>
+</body>
+</html>
