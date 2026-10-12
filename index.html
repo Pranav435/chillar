@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chillar: the stingy friend in your browser</title>
-<meta name="description" content="The friend who reads the bill line by line, living in your browser. Unticks add-ons you didn't ask for, adds up the fees, and catches free trials before they catch you.">
+<meta name="description" content="The friend who reads the bill line by line, living in your browser. Unticks add-ons you didn't ask for, adds up the fees, cancels free trials for you, and tells you what dollar prices and no-cost EMIs really cost.">
 <meta property="og:title" content="Chillar: the stingy friend in your browser">
-<meta property="og:description" content="Unticks the add-ons you didn't ask for, adds up the fees, and catches free trials before they catch you. Pay what you want.">
+<meta property="og:description" content="Unticks the add-ons you didn't ask for, adds up the fees, cancels free trials for you, and tells you when your hotel gets cheaper. Pay what you want.">
 <meta property="og:image" content="https://pranav435.github.io/chillar/og.png">
 <meta property="og:image:alt" content="A flight checkout page where Chillar has unticked travel insurance, a donation, a zero-cancellation add-on and a WhatsApp offers box, and a second message adding up the convenience and platform fees.">
 <meta property="og:url" content="https://pranav435.github.io/chillar/">
@@ -32,6 +32,9 @@
   ol.jobs h3 { margin:0 0 6px; font-size:19px; }
   ol.jobs h3::before { content:counter(j) ". "; color:var(--gold); }
   .say { font-style:italic; color:var(--muted); margin:8px 0 0; }
+  .new { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:8px; padding:12px 16px; margin:22px 0 0; }
+  .new p { margin:0; }
+  .tag { display:inline-block; background:var(--gold); color:var(--gold-ink); font-size:13px; font-weight:700; border-radius:6px; padding:1px 8px; margin-left:8px; vertical-align:middle; }
   ol.steps li { margin:0 0 6px; }
   code { background:var(--card); border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size:15px; }
   dl dt { font-weight:700; margin-top:14px; }
@@ -47,9 +50,13 @@
     <h1>Chillar: the stingy friend in your browser</h1>
   </header>
 
-  <p class="lede">Chillar is the friend who reads the bill line by line, living in your browser. Install it once. It unticks what you didn't ask for, points out the fees, reminds you before a free trial starts billing you, and warns you before a site makes you pay to download your own work.</p>
+  <p class="lede">Chillar is the friend who reads the bill line by line, living in your browser. Install it once. It unticks what you didn't ask for, points out the fees, cancels free trials for you before they bill you, and does the sums sites would rather you skipped.</p>
   <p><a class="buy" href="https://blindiephoenix.gumroad.com/l/chillar">Get Chillar: pay what you want, from INR 99</a></p>
   <p class="small">Plus GST, which Chillar can't untick. I tried. Instant download for Chrome, Edge, Brave and Arc on Mac, Windows and Linux.</p>
+
+  <div class="new">
+    <p><strong>New in version 1.2:</strong> Chillar now cancels free trials for you, shows what a dollar price really costs on an Indian card, works out what a no-cost EMI costs, and tells you when a hotel you booked gets cheaper. Already have Chillar? The update is free: download it again from your Gumroad library.</p>
+  </div>
 
   <h2>Why I made it</h2>
   <p>A free trial I forgot about once charged me. A "send me offers" box I never noticed signed me up for spam I definitely didn't order. Checkout pages are very good at this. So I built the friend I wanted at checkout, and made it stingy on purpose.</p>
@@ -68,20 +75,38 @@
       <p class="say">"Fees on this page: Platform fee INR 10, Packaging INR 25. That's INR 35 out of your INR 385 total (9 percent)."</p>
     </li>
     <li>
-      <h3>Catches free trials before they catch you</h3>
-      <p>When you start a free trial, Chillar notes when it ends and reminds you two days before, with a one-click Google Calendar reminder. The trial stays free if you want it to.</p>
-      <p class="say">"Looks like you're starting a trial. It ends around 10 Nov, then INR 649 a month. I'll remind you on 8 Nov."</p>
+      <h3>Catches free trials, and cancels them for you <span class="tag">New</span></h3>
+      <p>When you start a free trial, Chillar notes when it ends and reminds you two days before, with a one-click Google Calendar reminder if you want one. Press "Cancel it for me" and it opens the site and clicks through the cancel steps itself: the account page, the "are you sure" screens, the survey about why you're leaving. It has the steps for Netflix, Prime, Spotify, YouTube Premium, LinkedIn, Canva, Adobe, ChatGPT, JioHotstar and 16 more services.</p>
+      <p>If they offer you a discount to stay, Chillar tells you before declining it, because sometimes the deal is worth taking. It asks you before the final click, never types your password or OTP, never goes near "delete account", and keeps the confirmation page as proof in case they charge you anyway.</p>
+      <p class="say">"They're offering: get 50% off for 3 months if you stay. I'll decline it and keep cancelling, unless you'd rather take it."</p>
+      <p class="say">"Last step: pressing Finish cancellation should cancel it. The page says your membership will end on 20 Oct. Shall I press it?"</p>
     </li>
     <li>
       <h3>Warns you before the pay-to-download trap</h3>
       <p>Some sites let you spend an hour on a resume, a logo or a PDF, then ask for money when you press Download. Chillar warns you before you start on the usual suspects, and if a new site pulls the trick, it remembers and warns you next time.</p>
       <p class="say">"Sites like this usually let you make a resume for free and ask you to pay when you download it. Check the price before you put the work in."</p>
     </li>
+    <li>
+      <h3>Turns dollar prices into what you'll actually pay <span class="tag">New</span></h3>
+      <p>A USD 20 subscription isn't INR 20 times today's rate. Your bank adds a forex markup, usually 3.5%, and charges 18% GST on that markup. When a checkout total is in dollars, euros or pounds, Chillar works out the real rupee amount using today's rate. If the site offers to charge you in rupees at its own rate, Chillar checks whether that's a rip-off.</p>
+      <p class="say">"USD 20 a month comes to about INR 2,014 on your card: INR 1,934 at today's rate, plus about INR 80 for your bank's 3.5% forex markup and the GST on it."</p>
+    </li>
+    <li>
+      <h3>Finds the cost in "no-cost" EMI <span class="tag">New</span></h3>
+      <p>No-cost EMI isn't free. The bank still charges interest, and the shop hands it back to you as a discount, but you pay 18% GST on that interest, plus a processing fee. When you pick a no-cost EMI plan, Chillar tells you what it really costs.</p>
+      <p class="say">"Over 6 months on INR 32,000, you pay about INR 244 in GST on the interest. With the INR 199 processing fee plus GST, it costs about INR 479 more than paying in full."</p>
+    </li>
+    <li>
+      <h3>Tells you when your hotel gets cheaper <span class="tag">New</span></h3>
+      <p>Hotel prices move after you book. If you booked with free cancellation, Chillar offers to check the price once a day until the free cancellation ends. If it drops, you book again at the lower price and cancel the old booking for free.</p>
+      <p class="say">"Sea Breeze Resort is INR 1,500 cheaper now: INR 6,500, down from INR 8,000 when you booked. Free cancellation ends 18 Nov. Book again at the new price, then cancel the old booking for free."</p>
+    </li>
   </ol>
   <p>A small counter keeps track of how much it has saved you. It's stingy, not modest.</p>
 
   <h2>Private, and too stingy for servers</h2>
   <p>Everything runs on your laptop. Chillar has no server and no account, so it couldn't sell your data even if it wanted to. It doesn't want to.</p>
+  <p>It downloads two kinds of public information: today's exchange rate, and the cancel steps for popular services, so I can fix them when a site changes its buttons. Nothing about what you browse is ever sent. On sites it has no steps for, the cancel helper can use Chrome's built-in AI, which also runs on your computer.</p>
 
   <h2>Install in a minute</h2>
   <ol class="steps">
@@ -97,8 +122,12 @@
     <dd>Listing it there costs a registration fee, and you can guess how Chillar feels about fees. It will get there. Until then, Load unpacked works the same.</dd>
     <dt>Does it work with screen readers?</dt>
     <dd>Yes. Every message it shows is read out by your screen reader, and every button works from the keyboard.</dd>
+    <dt>Is it safe to let it cancel things?</dt>
+    <dd>It only cancels when you press "Cancel it for me", and it asks before the final click. It reads out every step, stops at login pages for you to sign in yourself, and can't type passwords or OTPs. If it can't find the next step, it says so and hands back to you. Some services, like Swiggy One and Zomato Gold, can only be cancelled in their apps; Chillar tells you where.</dd>
+    <dt>I already bought it. How do I get version 1.2?</dt>
+    <dd>Updates are free. Open your Gumroad library or purchase email, download the new zip, replace your old Chillar folder with it, and press the reload arrow on Chillar's card in <code>chrome://extensions</code>.</dd>
     <dt>Can I turn parts of it off?</dt>
-    <dd>Yes. Each of the four jobs has its own switch, and you can pause Chillar on any site for the days you feel generous.</dd>
+    <dd>Yes. Each job has its own switch, you can set your own card's forex markup, and you can pause Chillar on any site for the days you feel generous.</dd>
     <dt>Why pay what you want?</dt>
     <dd>One unticked insurance box covers it. Pay INR 99, or more if it has already saved you more. It keeps count.</dd>
   </dl>
